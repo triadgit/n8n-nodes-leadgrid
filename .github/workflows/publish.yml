@@ -22,8 +22,6 @@ jobs:
       - uses: actions/checkout@v4
 
       # Node 24 ships with npm 11.x which supports OIDC trusted publishing.
-      # Node 22's bundled npm 10.x does not, and upgrading in-place hits a
-      # self-overwrite MODULE_NOT_FOUND.
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
@@ -41,5 +39,7 @@ jobs:
       - name: Build
         run: npm run build
 
+      # --ignore-scripts skips prepublishOnly (n8n-node prerelease), which is a
+      # local-dev guardrail. Lint + build already ran as explicit steps above.
       - name: Publish (with provenance)
-        run: npm publish --provenance --access public
+        run: npm publish --provenance --access public --ignore-scripts
