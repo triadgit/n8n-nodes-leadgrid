@@ -1,0 +1,55 @@
+# Publishes the package to npm when a version tag (v*.*.*) is pushed.
+#
+# Required for n8n Creator Portal verification (from May 1, 2026): the
+# publish MUST happen in GitHub Actions with a provenance statement so
+# npm can cryptographically link the published tarball to this repo
+# and this workflow.
+#
+# One-time setup on npmjs.com:
+#   Settings - Publish access - Trusted Publishers - Add:
+#     GitHub Actions
+#     Repository owner: triadgit
+#     Repository name:  n8n-nodes-leadgrid
+#     Workflow name:    publish.yml
+#
+# With the Trusted Publisher bound, no NPM_TOKEN secret is needed.
+# Alternatively set NPM_TOKEN (granular access token, read+write) as a
+# repo secret; the fallback env below picks it up automatically.
+
+name: Publish to npm
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+  workflow_dispatch:
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Install deps
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Build
+        run: npm run build
+
+      - name: Publish (with provenance)
+        run: npm publish --provenance --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
