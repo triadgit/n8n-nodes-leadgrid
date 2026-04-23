@@ -2,6 +2,7 @@ import type {
   IAuthenticateGeneric,
   ICredentialTestRequest,
   ICredentialType,
+  Icon,
   INodeProperties,
 } from 'n8n-workflow';
 
@@ -10,8 +11,9 @@ export class LeadGridApi implements ICredentialType {
 
   displayName = 'LeadGrid API';
 
-  // eslint-disable-next-line n8n-nodes-base/cred-class-field-documentation-url-miscased
   documentationUrl = 'https://leadgrid.io/docs/api';
+
+  icon: Icon = 'file:icons/leadGrid.svg';
 
   properties: INodeProperties[] = [
     {

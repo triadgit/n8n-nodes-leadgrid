@@ -34,8 +34,7 @@ export class LeadGrid implements INodeType {
   description: INodeTypeDescription = {
     displayName: 'LeadGrid',
     name: 'leadGrid',
-    // eslint-disable-next-line n8n-nodes-base/node-class-description-icon-not-svg
-    icon: 'file:leadGrid.png',
+    icon: 'file:leadGrid.svg',
     group: ['output'],
     version: 1,
     subtitle: '={{$parameter["operation"] + ": " + $parameter["resource"]}}',
@@ -43,6 +42,7 @@ export class LeadGrid implements INodeType {
     defaults: {
       name: 'LeadGrid',
     },
+    usableAsTool: true,
     inputs: ['main'],
     outputs: ['main'],
     credentials: [
