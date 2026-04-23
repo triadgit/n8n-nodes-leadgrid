@@ -21,13 +21,16 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # Node 24 ships with npm 11.x which supports OIDC trusted publishing.
+      # Node 22's bundled npm 10.x does not, and upgrading in-place hits a
+      # self-overwrite MODULE_NOT_FOUND.
       - uses: actions/setup-node@v4
         with:
-          node-version: '22'
+          node-version: '24'
           registry-url: 'https://registry.npmjs.org'
 
-      - name: Upgrade npm (OIDC trusted publishing needs >=11.5.1)
-        run: npm install -g npm@latest
+      - name: Show npm version
+        run: npm --version
 
       - name: Install deps
         run: npm ci
