@@ -34,7 +34,7 @@ export class LeadGrid implements INodeType {
   description: INodeTypeDescription = {
     displayName: 'LeadGrid',
     name: 'leadGrid',
-    icon: 'file:leadGrid.svg',
+    icon: 'file:leadGrid.png',
     group: ['output'],
     version: 1,
     subtitle: '={{$parameter["operation"] + ": " + $parameter["resource"]}}',
