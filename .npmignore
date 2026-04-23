@@ -1,0 +1,17 @@
+# The published tarball is `dist/` + package.json + README + LICENSE.
+# Everything else (source, configs, node_modules) stays off npm.
+node_modules
+credentials
+nodes
+gulpfile.js
+tsconfig.json
+tsconfig.tsbuildinfo
+.eslintrc.js
+.eslintrc.prepublish.js
+.prettierrc.js
+.editorconfig
+.github
+.vscode
+.idea
+*.tsbuildinfo
+*.log
