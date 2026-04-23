@@ -1,6 +1,6 @@
 {
   "name": "n8n-nodes-leadgrid",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "n8n community node for LeadGrid.io — one API for two pipelines (sales + recruitment).",
   "keywords": [
     "n8n-community-node-package",
